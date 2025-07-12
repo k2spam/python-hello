@@ -4,7 +4,7 @@ data = [(1, 4), (2, 7), (3, 10), (-2, -5)] # (x, y_true) rule: 3x + 1
 
 w1, b1 = 0.5, 0.1
 w2, b2 = 0.3, 0.2
-lr = 0.007185
+lr = 0.0051
 
 def neuron(x, w, b):
   return x * w + b
@@ -18,12 +18,12 @@ for epoch in range(10000):
     layer1 = relu(neuron(x, w1, b1))
     y_pred = relu(neuron(layer1, w2, b2))
 
-    #backpropogation
+    #backpropаgation
     grad_y_pred = 2 * (y_pred - y_true)
-    grad_w2 = grad_y_pred * layer1 if ( w2 * layer1 + b1 ) > 0 else 0
-    grad_b2 = grad_y_pred if ( w2 * layer1 + b1 ) > 0 else 0
+    grad_w2 = grad_y_pred * layer1 if ( w2 * layer1 + b2 ) > 0 else 0
+    grad_b2 = grad_y_pred if ( w2 * layer1 + b2 ) > 0 else 0
 
-    grad_layer1 = 2 * grad_y_pred * w2 if (w2 * layer1 + b2) > 0 else 0
+    grad_layer1 = grad_y_pred * w2 if (w2 * layer1 + b2) > 0 else 0
     grad_w1 = grad_layer1 * x if (w1 * x + b1) > 0 else 0
     grad_b1 = grad_layer1 if (w1 * x + b1) > 0 else 0
 
